@@ -32,15 +32,6 @@ public class PlayerController : MonoBehaviour
     {
 
 
-
-
-        if(GetComponent<LifePlayer>().health <= 0)
-        {
-            StartCoroutine(Muerte());
-        }
-
-
-
         movimientoHorizontal = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movimientoHorizontal * velocidad, rb.velocity.y);
@@ -75,11 +66,13 @@ public class PlayerController : MonoBehaviour
         {
             if (gravity.isGravityReversed)
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
 
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, -fuerzaSalto);
 
 
@@ -91,13 +84,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    IEnumerator Muerte()
-    {
-      //  anim.Play("Death");
-        yield return new WaitForSeconds(1f);
-        hitBox.enabled = false;
-        SceneManager.LoadScene("SampleScene");
-    }
   
     
    
@@ -122,7 +108,8 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.x != 0)
         {
-           anim.SetBool("isRun", true);
+            
+            anim.SetBool("isRun", true);
         }
         else
         {

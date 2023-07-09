@@ -20,7 +20,7 @@ public class SecondCharacter : MonoBehaviour
     private void Update()
     {
 
-        float inputHorizontal = -jugador.movimientoHorizontal;
+        float inputHorizontal = -Input.GetAxis("Horizontal");
 
         // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
         rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
@@ -58,6 +58,7 @@ public class SecondCharacter : MonoBehaviour
     {
         if (rb.velocity.x != 0)
         {
+            
             anim.SetBool("isRun", true);
         }
         else
@@ -74,12 +75,13 @@ public class SecondCharacter : MonoBehaviour
         {
             if (gravity.isGravityReversed)
             {
-
+                FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
 
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, -fuerzaSalto);
 
 

@@ -34,8 +34,9 @@ public class GravityControl : MonoBehaviour
         {
 
             // Cambiar la gravedad cuando se pulsa un botón (puedes cambiar "Jump" por el nombre del botón que deseas)
-            if (Input.GetKeyDown(KeyCode.P) && !notTouch)
+            if (Input.GetKeyDown(KeyCode.C) && !notTouch)
             {
+                FindObjectOfType<AudioManager>().Play("Gravedad");
                 if (isGravityReversed)
                 {
                     player1.transform.Rotate(0, 0, 180);
@@ -62,8 +63,9 @@ public class GravityControl : MonoBehaviour
         else
         {
             // Cambiar la gravedad cuando se pulsa un botón (puedes cambiar "Jump" por el nombre del botón que deseas)
-            if (Input.GetKeyDown(KeyCode.P) && !notTouch)
+            if (Input.GetKeyDown(KeyCode.C) && !notTouch)
             {
+                FindObjectOfType<AudioManager>().Play("Gravedad");
                 if (isGravityReversed)
                 {
                     player2.transform.Rotate(0, 0, 180);

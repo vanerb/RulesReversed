@@ -14,7 +14,7 @@ public class PlayerSwitch : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             SwitchPlayer(); 
         }

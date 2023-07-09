@@ -52,7 +52,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -127,18 +127,67 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d5e7fe2a605a9449ba39d4d2ff9779
+      internalID: 1534390428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -1, y: -1}
+      - {x: -4, y: -1}
+      - {x: -8, y: -1}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: -1}
+      - {x: 4, y: -1}
+    physicsShape:
+    - - {x: -7, y: -8}
+      - {x: -7, y: -6}
+      - {x: -6, y: -6}
+      - {x: -6, y: -4}
+      - {x: -5, y: -3}
+      - {x: -4, y: -3}
+      - {x: -3, y: -4}
+      - {x: -3, y: -6}
+      - {x: -2, y: -6}
+      - {x: -2, y: -8}
+      - {x: 1, y: -8}
+      - {x: 1, y: -6}
+      - {x: 2, y: -6}
+      - {x: 2, y: -4}
+      - {x: 3, y: -3}
+      - {x: 4, y: -3}
+      - {x: 5, y: -4}
+      - {x: 5, y: -6}
+      - {x: 6, y: -6}
+      - {x: 6, y: -8}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Idle_0: 1534390428
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
