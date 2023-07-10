@@ -7,9 +7,11 @@ public class PlayerSwitch : MonoBehaviour
   
 
     public bool isActive = false;
-
+    public GameObject arrowicon1;
+    public GameObject arrowicon2;
     private void Start()
     {
+        arrowicon1.SetActive(true);
     }
 
     private void Update()
@@ -25,10 +27,15 @@ public class PlayerSwitch : MonoBehaviour
         if (isActive)
         {
             isActive = false;
+            arrowicon1.SetActive(true);
+            arrowicon2.SetActive(false);
+
         }
         else
         {
             isActive = true;
+            arrowicon2.SetActive(true);
+            arrowicon1.SetActive(false);
         }
     }
 }

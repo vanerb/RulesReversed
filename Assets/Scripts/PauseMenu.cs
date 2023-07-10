@@ -16,14 +16,20 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+
+        if (DesactivePanel.isActive)
         {
-            // Si se presiona la tecla Escape, alternar la pausa
-            if (estaPausado)
-                ReanudarJuego();
-            else
-                PausarJuego();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                // Si se presiona la tecla Escape, alternar la pausa
+                if (estaPausado)
+                    ReanudarJuego();
+                else
+                    PausarJuego();
+            }
         }
+       
     }
 
     public void PausarJuego()

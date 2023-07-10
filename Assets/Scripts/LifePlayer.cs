@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LifePlayer : MonoBehaviour
 {
-    public Slider slider;
     public float maxHealth;
     public float health;
 
@@ -14,8 +14,6 @@ public class LifePlayer : MonoBehaviour
     {
 
         health = maxHealth;
-        slider.maxValue = maxHealth;
-        slider.value = health;
 
       
     }
@@ -23,10 +21,11 @@ public class LifePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = health;
-
-        
-      
+       if(health <= 0)
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.buildIndex);
+        }
     }
 
     

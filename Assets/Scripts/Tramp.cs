@@ -5,20 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Tramp : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Player2"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Player2"))
         {
             FindObjectOfType<AudioManager>().Play("Muerte");
             StartCoroutine(Muerte(collision));
         }
-    }
 
-    IEnumerator Muerte(Collider2D collision)
+    }
+    IEnumerator Muerte(Collision2D collision)
     {
-        yield return new WaitForSeconds(0.3f);
-        Destroy(collision.gameObject);
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        yield return new WaitForSeconds(0.1f);
+        collision.gameObject.GetComponent<LifePlayer>().Hit(200);
+        
+        //Destroy(collision.gameObject);
+        
     }
 }
