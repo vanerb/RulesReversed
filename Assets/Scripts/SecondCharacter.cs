@@ -12,22 +12,37 @@ public class SecondCharacter : MonoBehaviour
     public GravityControl gravity;
     public Animator anim;
 
+    public PlayerSwitch playerSwitch;
+    public Vector2 lastJumpPoint;
+
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        lastJumpPoint = transform.position;
+
     }
 
     private void Update()
     {
+        if (playerSwitch.isActive)
+        {
+            float inputHorizontal = -Input.GetAxis("Horizontal");
+            // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
+            rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
+        }
+        else
+        {
+            float inputHorizontal = Input.GetAxis("Horizontal");
+            // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
+            rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
+        }
 
-        float inputHorizontal = -Input.GetAxis("Horizontal");
-
-        // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
-        rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
+        
 
 
         // Detectar el salto invertido
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             InvertedJump();
         }
@@ -76,6 +91,8 @@ public class SecondCharacter : MonoBehaviour
             if (gravity.isGravityReversed)
             {
                 FindObjectOfType<AudioManager>().Play("Jump");
+                lastJumpPoint = transform.position;
+
                 rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
 
             }
@@ -83,6 +100,8 @@ public class SecondCharacter : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, -fuerzaSalto);
+                lastJumpPoint = transform.position;
+
 
 
 
@@ -123,4 +142,6 @@ public class SecondCharacter : MonoBehaviour
             }
         }
     }
+
+    
 }

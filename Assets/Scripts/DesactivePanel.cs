@@ -6,6 +6,7 @@ public class DesactivePanel : MonoBehaviour
 {
     public GameObject panel;
     public KeyCode key;
+    public KeyCode keyJoystick;
     public static bool isActive;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class DesactivePanel : MonoBehaviour
 
       
 
-        if (Input.GetKeyDown(key))
+        if (Input.GetKeyDown(key) || Input.GetKeyDown(keyJoystick))
         {
             Time.timeScale = 1f;
             panel.SetActive(false);

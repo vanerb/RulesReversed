@@ -17,9 +17,10 @@ public class GravityControl : MonoBehaviour
     public PlayerSwitch playerSwitch;
 
     public CinemachineVirtualCamera virtualCamera;
-
-    public 
-
+    public GameObject cameraObject;
+   
+    public float gravityScalePos = 1;
+    public float gravityScaleNeg = -1;
     void Start()
     {
         isGravityReversed = true;
@@ -34,7 +35,7 @@ public class GravityControl : MonoBehaviour
         {
 
             // Cambiar la gravedad cuando se pulsa un botón (puedes cambiar "Jump" por el nombre del botón que deseas)
-            if (Input.GetKeyDown(KeyCode.C) && !notTouch)
+            if (Input.GetKeyDown(KeyCode.C) && !notTouch || Input.GetKeyDown(KeyCode.JoystickButton2) && !notTouch)
             {
                 FindObjectOfType<AudioManager>().Play("Gravedad");
                 if (isGravityReversed)
@@ -57,13 +58,15 @@ public class GravityControl : MonoBehaviour
             player1.GetComponent<GravityControl>().enabled = true;
             virtualCamera.Follow = player1.transform;
             virtualCamera.LookAt = player1.transform;
+            cameraObject.transform.SetParent(player2.transform);
+            cameraObject.transform.position = new Vector3(player2.transform.position.x, player2.transform.position.y, -10);
             //player2.GetComponent<SecondCharacter>().velocidad = 0;
             //player1.GetComponent<PlayerController>().velocidad = 5;
         }
         else
         {
             // Cambiar la gravedad cuando se pulsa un botón (puedes cambiar "Jump" por el nombre del botón que deseas)
-            if (Input.GetKeyDown(KeyCode.C) && !notTouch)
+            if (Input.GetKeyDown(KeyCode.C) && !notTouch || Input.GetKeyDown(KeyCode.JoystickButton2) && !notTouch)
             {
                 FindObjectOfType<AudioManager>().Play("Gravedad");
                 if (isGravityReversed)
@@ -86,6 +89,8 @@ public class GravityControl : MonoBehaviour
             player2.GetComponent<GravityControl>().enabled = true;
             virtualCamera.Follow = player2.transform;
             virtualCamera.LookAt = player2.transform;
+            cameraObject.transform.SetParent(player1.transform);
+            cameraObject.transform.position = new Vector3(player1.transform.position.x, player1.transform.position.y, -10);            
             //player1.GetComponent<PlayerController>().velocidad = 0;
             //player2.GetComponent<SecondCharacter>().velocidad = 5;
         }
@@ -113,22 +118,22 @@ public class GravityControl : MonoBehaviour
         {
             if (isGravityReversed)
             {
-                player1.GetComponent<Rigidbody2D>().gravityScale = 1;
+                player1.GetComponent<Rigidbody2D>().gravityScale = gravityScalePos;
             }
             else
             {
-                player1.GetComponent<Rigidbody2D>().gravityScale = -1;
+                player1.GetComponent<Rigidbody2D>().gravityScale =gravityScaleNeg;
             }
         }
         else
         {
             if (isGravityReversed)
             {
-                player2.GetComponent<Rigidbody2D>().gravityScale = 1;
+                player2.GetComponent<Rigidbody2D>().gravityScale = gravityScalePos;
             }
             else
             {
-                player2.GetComponent<Rigidbody2D>().gravityScale = -1;
+                player2.GetComponent<Rigidbody2D>().gravityScale = gravityScaleNeg;
             }
         }
 

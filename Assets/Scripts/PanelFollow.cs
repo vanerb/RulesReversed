@@ -57,12 +57,9 @@ public class PanelFollow : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Player2"))
         {
-            
-            time += 0.5f;
-            if (time >= 3)
-            {
-                time = 3;
-            }
+
+            time = 3;
+           
         }
     }
 }

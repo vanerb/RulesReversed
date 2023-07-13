@@ -18,18 +18,15 @@ public class PauseMenu : MonoBehaviour
     {
 
 
-        if (DesactivePanel.isActive)
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button7))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                // Si se presiona la tecla Escape, alternar la pausa
-                if (estaPausado)
-                    ReanudarJuego();
-                else
-                    PausarJuego();
-            }
+            // Si se presiona la tecla Escape, alternar la pausa
+            if (estaPausado)
+                ReanudarJuego();
+            else
+                PausarJuego();
         }
-       
+
     }
 
     public void PausarJuego()
@@ -43,7 +40,15 @@ public class PauseMenu : MonoBehaviour
     public void ReanudarJuego()
     {
         // Reanudar el juego y ocultar el panel de pausa
-        Time.timeScale = 1f;
+        if (!HablidadLenta.isActive)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0.5f;
+        }
+        
         estaPausado = false;
         panelPausa.SetActive(false);
     }

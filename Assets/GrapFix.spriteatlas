@@ -108,6 +108,7 @@ SpriteAtlas:
   - {fileID: -754433351, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
   - {fileID: -266967416, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
   - {fileID: 1907033560, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
+  - {fileID: -183733807, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
   - {fileID: 1301670575, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
   - {fileID: 1253117674, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
   - {fileID: 2117972423, guid: 76bb7eb8e40140d4099a155cb3653df0, type: 3}
@@ -269,6 +270,7 @@ SpriteAtlas:
   - Terrain (16x16)_134
   - Terrain (16x16)_135
   - Terrain (16x16)_129
+  - Terrain (16x16)_144
   - Terrain (16x16)_136
   - Terrain (16x16)_128
   - Terrain (16x16)_137

@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour
 
     public float movimientoHorizontal;
 
+    public PlayerSwitch playerSwitch;
+
+    public Vector2 lastJumpPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        lastJumpPoint = transform.position;
      
 
     }
@@ -32,13 +36,22 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        movimientoHorizontal = Input.GetAxis("Horizontal");
+        if (playerSwitch.isActive)
+        {
+            float inputHorizontal = Input.GetAxis("Horizontal");
+            // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
+            rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
+        }
+        else
+        {
+            float inputHorizontal = -Input.GetAxis("Horizontal");
+            // Aplica las fuerzas invertidas al Rigidbody2D del segundo personaje
+            rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
+        }
 
-        rb.velocity = new Vector2(movimientoHorizontal * velocidad, rb.velocity.y);
 
-       
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
            
             if (checkGround.puedeSaltar)
@@ -68,12 +81,13 @@ public class PlayerController : MonoBehaviour
             {
                 FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
-
+                lastJumpPoint = transform.position;
             }
             else
             {
                 FindObjectOfType<AudioManager>().Play("Jump");
                 rb.velocity = new Vector2(rb.velocity.x, -fuerzaSalto);
+                lastJumpPoint = transform.position;
 
 
 
@@ -150,4 +164,5 @@ public class PlayerController : MonoBehaviour
     }
 
 
+   
 }

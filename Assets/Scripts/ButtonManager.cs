@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
    public void Jugar()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
 
     public void Creditos()
