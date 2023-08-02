@@ -15,7 +15,8 @@ public class SecondCharacter : MonoBehaviour
     public PlayerSwitch playerSwitch;
     public Vector2 lastJumpPoint;
 
-
+    public float coyoteTime = 0.1f; // Tiempo en segundos que dura el Coyote Time.
+    private float coyoteTimeCounter; // Contador interno para el tiempo restante.
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,6 +26,12 @@ public class SecondCharacter : MonoBehaviour
 
     private void Update()
     {
+
+        if (checkGround.puedeSaltar)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+
         if (playerSwitch.isActive)
         {
             float inputHorizontal = -Input.GetAxis("Horizontal");
@@ -42,10 +49,11 @@ public class SecondCharacter : MonoBehaviour
 
 
         // Detectar el salto invertido
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimeCounter > 0 || Input.GetKeyDown(KeyCode.Joystick1Button0) && coyoteTimeCounter > 0)
         {
             InvertedJump();
         }
+        coyoteTimeCounter -= Time.deltaTime;
 
         Giro();
         CorrerAnim();

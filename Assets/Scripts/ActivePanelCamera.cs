@@ -10,8 +10,7 @@ public class ActivePanelCamera : MonoBehaviour
     private void Start()
     {
         // Asegurarse de que el juego comience sin estar pausado
-        estaActivado = false;
-        GUI.SetActive(false);
+        estaActivado = true;
     }
 
     private void Update()

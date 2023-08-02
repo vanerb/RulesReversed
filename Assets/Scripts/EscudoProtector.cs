@@ -23,7 +23,7 @@ public class EscudoProtector : MonoBehaviour
         rectTransform = imgHab.GetComponent<RectTransform>();
 
         tamanoInicial = rectTransform.sizeDelta;
-        tamanoFinal = new Vector2(52.9972f, 52.9972f);
+        tamanoFinal = new Vector2(36f, 36f);
         StartCoroutine(AnimarAumento());
 
     }

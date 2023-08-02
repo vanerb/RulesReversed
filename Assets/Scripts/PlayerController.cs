@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 lastJumpPoint;
 
+    public float coyoteTime = 0.1f; // Tiempo en segundos que dura el Coyote Time.
+    private float coyoteTimeCounter; // Contador interno para el tiempo restante.
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,19 +52,25 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(inputHorizontal * velocidad, rb.velocity.y);
         }
 
+        if (checkGround.puedeSaltar)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
 
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimeCounter > 0 || Input.GetKeyDown(KeyCode.Joystick1Button0) && coyoteTimeCounter > 0)
         {
            
             if (checkGround.puedeSaltar)
             {
+                
                 Salto();
 
                     
             }
            
+
         }
+        coyoteTimeCounter -= Time.deltaTime;
 
 
         Giro();
@@ -77,6 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (checkGround.puedeSaltar)
         {
+            
             if (gravity.isGravityReversed)
             {
                 FindObjectOfType<AudioManager>().Play("Jump");

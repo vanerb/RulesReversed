@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
    public void Jugar()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("InfiniteLevel");
     }
 
     public void Creditos()

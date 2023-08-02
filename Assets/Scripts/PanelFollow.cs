@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelFollow : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public class PanelFollow : MonoBehaviour
     public PlayerSwitch playerSwitch;
 
     public float time;
+
+    public Text cronometertxt;
+    public GameObject crCanvas;
     // Start is called before the first frame update
     void Start()
     {
         time = 3;
+        crCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,7 +42,9 @@ public class PanelFollow : MonoBehaviour
                 transform.position += direccion * velocidad * Time.deltaTime;
             }
         }
-        
+        cronometertxt.text = System.Math.Round(time, 1).ToString() + " s";
+
+
     }
 
 
@@ -45,7 +52,9 @@ public class PanelFollow : MonoBehaviour
     {
         if(collision.CompareTag("Player") || collision.CompareTag("Player2"))
         {
+            crCanvas.SetActive(true);
             time -= Time.deltaTime;
+           
             if (time <= 0)
             {
                 collision.gameObject.GetComponent<LifePlayer>().Hit(200);
@@ -57,7 +66,7 @@ public class PanelFollow : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Player2"))
         {
-
+            crCanvas.SetActive(false);
             time = 3;
            
         }

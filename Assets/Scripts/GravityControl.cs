@@ -21,6 +21,11 @@ public class GravityControl : MonoBehaviour
    
     public float gravityScalePos = 1;
     public float gravityScaleNeg = -1;
+
+    public float coyoteTime = 0.1f; // Tiempo en segundos que dura el Coyote Time.
+    private float coyoteTimeCounter; // Contador interno para el tiempo restante.
+
+
     void Start()
     {
         isGravityReversed = true;
@@ -35,7 +40,7 @@ public class GravityControl : MonoBehaviour
         {
 
             // Cambiar la gravedad cuando se pulsa un botón (puedes cambiar "Jump" por el nombre del botón que deseas)
-            if (Input.GetKeyDown(KeyCode.C) && !notTouch || Input.GetKeyDown(KeyCode.JoystickButton2) && !notTouch)
+            if (Input.GetKeyDown(KeyCode.C) && !notTouch && coyoteTimeCounter > 0 || Input.GetKeyDown(KeyCode.JoystickButton2) && !notTouch && coyoteTimeCounter > 0)
             {
                 FindObjectOfType<AudioManager>().Play("Gravedad");
                 if (isGravityReversed)
@@ -50,8 +55,10 @@ public class GravityControl : MonoBehaviour
                 }
                 //isGravityReversed = !isGravityReversed;
                 ChangeGravity();
+                
 
             }
+            coyoteTimeCounter -= Time.deltaTime;
 
             CompruebaSuelo();
             player2.GetComponent<GravityControl>().enabled = false;
@@ -109,6 +116,7 @@ public class GravityControl : MonoBehaviour
         else
         {
             notTouch = false;
+            coyoteTimeCounter = coyoteTime;
         }
     }
   
